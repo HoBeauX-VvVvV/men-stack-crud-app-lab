@@ -5,7 +5,7 @@ const gameSchema = new mongoose.Schema({
     genre: { type: String, required: true },
     publisher: { type: String },
     year: { type: Number },
-    havePlayed: { Boolean }
+    havePlayed: Boolean 
 });
 
 const Game = mongoose.model('Game', gameSchema)

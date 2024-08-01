@@ -4,7 +4,7 @@ function Index(props) {
     return (
         <div>
             <h1>Games index page</h1>
-            <a href="/games/New">Create a new game listing here</a>
+            <a href="/games/New">Create a new game listing</a>
             <ul>
                 {
                     props.games.map((game) => {
