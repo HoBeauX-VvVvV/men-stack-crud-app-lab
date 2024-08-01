@@ -69,7 +69,7 @@ app.get('/games', async (req, res) => {
 // UPDATE
 // EDIT
 
-/*app.get('/games/:id/edit', async (req, res) => {
+app.get('/games/:id/edit', async (req, res) => {
     try {
         const foundGame = await Game.findOne({_id: req.params.id});
         res.render('games/Edit', {
@@ -79,16 +79,26 @@ app.get('/games', async (req, res) => {
         res.status(400).send({ msg: error.message });
     }
 });
-*/
+
+app.put('/games/:id', async (req, res) => {
+       try {
+        if(req.body.havePlayed === 'on') {  
+            req.body.havePlayed = true
+       } else {   
+            req.body.havePlayed = false}
+           const updatedGame = await Game.findOneAndUpdate({ _id: req.params.id}, req.body, {new : true})
+           res.redirect(`/games/${updatedGame._id}`)
+       } catch (error) {
+           res.status(400).send({ msg: error.message })
+       }    
+});
+
 // DELETE
 
 app.delete('/games/:id', async (req, res) => {
     try {
         await Game.findOneAndDelete({ _id: req.params.id })
         res.redirect('/games');
-        //.then((game) => {
-        //  res.status(200).send
-        // })
     } catch (error) {
         res.status(400).send({ msg: error.message })
     }
