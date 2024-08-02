@@ -18,6 +18,9 @@ function Show(props) {
             <form action={`/games/${props.game.id}/?_method=DELETE`} method="POST" >
                 <button type="submit">Delete</button>
             </form>
+            <form action={`/games/${props.game.id}/edit`}>
+                <button type="submit">Edit Game</button>
+            </form>
         </div>
     )
 }

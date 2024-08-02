@@ -21,8 +21,10 @@ mongoose.connection.on('error', () => {
     console.log(`Mongo has lost the plot`)
 });
 
-// CRUD
+// INDUCES
+
 // CREATE
+// NEW
 app.get('/games/new', (req, res) => {
     res.render('games/New')
 });
@@ -98,7 +100,9 @@ app.put('/games/:id', async (req, res) => {
 app.delete('/games/:id', async (req, res) => {
     try {
         await Game.findOneAndDelete({ _id: req.params.id })
+        .then((game) => {
         res.redirect('/games');
+        })
     } catch (error) {
         res.status(400).send({ msg: error.message })
     }
